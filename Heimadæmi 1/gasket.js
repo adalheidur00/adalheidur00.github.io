@@ -3,7 +3,7 @@
 var gl;
 var points;
 
-var NumPoints = 5000;
+var NumPoints = 15000;
 
 window.onload = function init()
 {
@@ -22,6 +22,7 @@ window.onload = function init()
         vec2( -1, -1 ),
         vec2(  0,  1 ),
         vec2(  1, -1 )
+
     ];
 
     // Specify a starting point p for our iterations
