@@ -2,11 +2,11 @@
 <html>
 
 <title>Skotveiði</title>
-
+<h1>Skotveiði</h1>
+<p>Notaðu músina til að færa byssuna og bil til að skjóta!</p>
 <script id="vertex-shader" type="x-shader/x-vertex">
 
     attribute vec4 vPosition;
-    uniform vec2 boxPos;
     attribute vec4 vColor;
 
     varying vec4 fColor;
@@ -14,10 +14,6 @@
     void
     main()
     {
-        vec4 t = vPosition;
-    
-        t.xy += boxPos;
-    
         gl_Position = vPosition;
         fColor = vColor;
     }
@@ -41,7 +37,7 @@
 <script type="text/javascript" src="/angelCommon/webgl-utils.js"></script>
 <script type="text/javascript" src="/angelCommon/initShaders.js"></script>
 <script type="text/javascript" src="/angelCommon/MV.js"></script>
-<script type="text/javascript" src="/Verkefni 1/shooter1.js"></script>
+<script type="text/javascript" src="/Verkefni 1/shooter.js"></script>
 
 <body>
 <canvas id="gl-canvas" width="1000" height="600">
