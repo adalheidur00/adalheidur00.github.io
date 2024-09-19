@@ -127,6 +127,7 @@ window.onload = function init()
         e.preventDefault();
         
         var scale = (e.deltaY > 0) ? 0.9 : 1.1;
+        
 
         for(var i = 0; i < points.length; i++){
             points[i][0] *= scale;
