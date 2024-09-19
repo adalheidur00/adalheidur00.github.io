@@ -109,7 +109,7 @@ window.onload = function init()
             gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
             gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
 
-            render();
+
         }
     });
 
@@ -118,7 +118,7 @@ window.onload = function init()
             var col = vec4(Math.random(), Math.random(), Math.random(), 1.0);
             gl.uniform4fv(locColor, flatten(col));
 
-            render();
+            
         }
     } );
 
@@ -137,7 +137,7 @@ window.onload = function init()
         gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
         gl.bufferData(gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW);
 
-        render();
+        
     })
 
 
@@ -150,4 +150,6 @@ function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
     
     gl.drawArrays( gl.POINTS, 0, points.length );
+
+    window.requestAnimFrame(render);
 }
