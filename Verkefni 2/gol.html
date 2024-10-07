@@ -1,0 +1,51 @@
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+
+uniform mat4 projection;
+uniform mat4 modelview;
+
+void main() 
+{
+    gl_Position = projection * modelview * vPosition;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+   
+uniform vec4 wireColor;
+
+void main()
+{
+    gl_FragColor = wireColor;
+}
+</script>
+
+
+<script type="text/javascript" src="/angelCommon/webgl-utils.js"></script>
+<script type="text/javascript" src="/angelCommon/initShaders.js"></script>
+<script type="text/javascript" src="/angelCommon/MV.js"></script>
+<script type="text/javascript" src="/Verkefni 2/gol.js"></script>
+</head>
+
+<body>
+    <table style="width:100%">
+        <tbody>
+            <tr>
+                <td>
+                    <center>
+                        <h1> Game of Life</h1>
+                        <h2> 3D útgáfa í WEBGL</h2>
+                    </center>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+<canvas id="gl-canvas" width="800" height="800">
+</body>
+</html>
