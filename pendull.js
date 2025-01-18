@@ -20,6 +20,12 @@ var mv;
 
 var matrixLoc;
 
+var t1 = 0;
+var t2 = 0;
+var speed1 = 0.01;
+var speed2 = 0.05
+
+
 
 window.onload = function init()
 {
@@ -135,67 +141,32 @@ function quad(a, b, c, d)
 function render()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    
+    sveifla1 += tidni1
+    theta1 = 45 * Math.sin(sveifla1)
 
-    rotHour += -0.0083;  
-    rotMin += -0.1;    
-    rotSec += -6;
+    sveifla2 += tidni2
+    theta2 = 45 * Math.sin(sveifla2)
 
-   var mv = mat4();
-   mv = mult( mv, rotateX(spinX) );
-   mv = mult( mv, rotateY(spinY) );
+    var mv = mat4()
 
-    // Klst
-    mv = mat4();
-    mv = mult( mv, rotateX(spinX) );
-    mv = mult( mv, rotateY(spinY) );
+    mv = mult(mv, rotateZ(theta1))
 
-    mv = mult( mv, rotateZ(rotHour) ); 
-    mv = mult( mv, translate(-0.2, 0, 0) );
-    mv = mult( mv, scalem( 0.6, 0.05, 0.05 ) ); 
-    gl.uniformMatrix4fv(matrixLoc, false, flatten(mv));
-    gl.drawArrays( gl.TRIANGLES, 0, numVertices );
+    mv1 = mult(mv, translate(0.0,-0.2,0.0))
+    mv1 = mult(mv1, scalem(0.05,0.5,0.05))
 
-    // Mín
-    mv1 = mat4(); 
-    mv1 = mult( mv1, rotateX(spinX) );
-    mv1 = mult( mv1, rotateY(spinY) );
-
-    mv1 = mult( mv1, rotateZ(rotHour) );
-    mv1 = mult( mv1, translate(0.1, 0, 0) ); 
-
-    mv1 = mult( mv1, rotateZ(rotMin) ); 
-    mv1 = mult( mv1, translate(0.3, 0, 0) ); 
-    mv1 = mult( mv1, scalem( 0.6, 0.05, 0.05 ) ); 
     gl.uniformMatrix4fv(matrixLoc, false, flatten(mv1));
     gl.drawArrays( gl.TRIANGLES, 0, numVertices );
 
-    // Sek
-    mv2 = mat4();
-    mv2 = mult( mv2, rotateX(spinX) );
-    mv2 = mult( mv2, rotateY(spinY) );
+    mv = mult(mv, translate(0.0,-0.5,0.0))
+    mv = mult(mv, rotateZ(theta2))
 
-    mv2 = mult(mv2, rotateZ(rotHour));
-    mv2 = mult(mv2, translate(0.1, 0, 0));
-    mv2 = mult(mv2, rotateZ(rotMin));
-    mv2 = mult(mv2, translate(0.6, 0,0));
+    mv2 = mult(mv, translate(0.0,-0.2,0.0))
+    mv2 = mult(mv2, scalem(0.05,0.5,0.05))
 
-    mv2 = mult(mv2, rotateZ(rotSec));
-    mv2 = mult(mv2, translate(0.3,0,0));
-    mv2 = mult(mv2, scalem(0.6, 0.05,0.05));
     gl.uniformMatrix4fv(matrixLoc, false, flatten(mv2));
     gl.drawArrays( gl.TRIANGLES, 0, numVertices );
 
-
-    // Bakrunnur
-    var mvt = mat4();
-    mvt = mult(mvt, rotateX(spinX));
-    mvt = mult(mvt, rotateY(spinY));
-
-    mvb = mult( mvt, translate( 0.0, 0, 0.1 ) );
-    mvb = mult( mvb, scalem( -2.0, -2.0, -0.01 ) );
-    gl.uniformMatrix4fv(matrixLoc, false, flatten(mvb));
-    gl.drawArrays( gl.TRIANGLES, 0, numVertices );
-    
 
     requestAnimFrame( render );
 }
